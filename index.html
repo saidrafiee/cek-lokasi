@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>klik tombol di bawah untuk melihat koordinat lokasi saat ini</p>
+    <button onclick="getLocation()">Lihat Lokasi</button>
+    <br>
+    <br>
+
+    <div id="dataLokasi"></div>
+    <br>
+    <button onclick="verification()">Verifikasi</button>
+    <p id="verifikasi"></p>
+
+    <script>
+        let lokasi = document.getElementById("dataLokasi")
+        let verifikasi = document.getElementById("verifikasi")
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+                // console.log(navigator.geolocation.getCurrentPosition(showPosition));
+                
+            } else {
+                lokasi.innerHTML = "Geolocation tidak dapat di buka d browser ini"
+            }
+        }
+        function showPosition(position) {
+            
+            lokasi.innerHTML = `Latitude: ${position.coords.latitude} <br> Longitude: ${position.coords.longitude}  `
+            console.log(position.coords.latitude)
+            
+            return Lintang =  typeof position.coords.latitude.toString();
+        }
+
+        // function verification(x) {
+        //     if (Lintang === "0.5265640576046026" ) {
+        //         verifikasi.innerHTML = "Lokasi Valid"
+        //     }
+        //     else {
+        //         verifikasi.innerHTML = "Anda tidak pada posisi yang tepat"
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>
