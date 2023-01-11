@@ -22,6 +22,8 @@
     <script>
         let lokasi = document.getElementById("dataLokasi")
         let verifikasi = document.getElementById("verifikasi")
+        let lintang = 0
+        let bujur = 0
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -34,20 +36,27 @@
         }
         function showPosition(position) {
             
-            lokasi.innerHTML = `Latitude: ${position.coords.latitude} <br> Longitude: ${position.coords.longitude}  `
-            console.log(position.coords.latitude)
-            
-            return Lintang =  typeof position.coords.latitude.toString();
+             lintang = position.coords.latitude
+             bujur = position.coords.longitude
+            lokasi.innerHTML = `Latitude: ${lintang} <br> Longitude: ${bujur}`
+            // console.log(lintang)
+            // console.log(bujur)
+
+            verification()
         }
 
-        // function verification(x) {
-        //     if (Lintang === "0.5265640576046026" ) {
-        //         verifikasi.innerHTML = "Lokasi Valid"
-        //     }
-        //     else {
-        //         verifikasi.innerHTML = "Anda tidak pada posisi yang tepat"
-        //     }
-        // }
+        // fungsi untuk verifikasi
+        function verification() {
+
+            console.log(`dari function verfification ${lintang} ${bujur}`)
+
+            if (lintang <= 0.5317278 >= 0.532395 && bujur <= 101.450174 >= 101.450939) {
+                verifikasi.innerHTML = "Lokasi Valid"
+            }
+            else {
+                verifikasi.innerHTML = "Anda tidak pada posisi yang tepat"
+            }
+        }
 
     </script>
 </body>
