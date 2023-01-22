@@ -15,7 +15,7 @@
     <br>
     <div id="dataLokasi"></div>
     <br>
-    <!-- <button onclick="verification()">Verifikasi</button> -->
+    <button onclick="verification()">Verifikasi</button>
     <p style="font-family: sans-serif; font-style: italic;">status lokasi:</p>
     <p id="verifikasi"></p>
 
@@ -27,13 +27,13 @@
 
         let locationHistory = []
 
-        getLocation()
-        setInterval(() => {
-            getLocation()
-            locationHistory.push(`${lintang},${bujur}`)
-            console.log(locationHistory)
-            verification()
-        }, 5000)
+        // getLocation()
+        // setInterval(() => {
+        //     getLocation()
+        //     locationHistory.push(`${lintang},${bujur}`)
+        //     console.log(locationHistory)
+        //     verification()
+        // }, 5000)
 
         function getLocation() {
             if (navigator.geolocation) {
