@@ -36,7 +36,7 @@
             locationHistory.push(`${lintang},${bujur}`)
             console.log(locationHistory)
             verification()
-        }, 5000)
+        }, 3000)
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -72,7 +72,7 @@
             // BUJUR   = 0.5329287,101.451273
 
             if (lintang >= 0.5314408 && lintang <= 0.5329287 && bujur >= 101.450174 && bujur <= 101.451273) {
-                if (locationHistory[locationHistory.length - 1] !== locationHistory[locationHistory.length - 2]) {
+                if (locationHistory[locationHistory.length - 1] !== locationHistory[locationHistory.length - 2] || locationHistory[locationHistory.length - 2] !== locationHistory[locationHistory.length - 3]) {
                     console.log('aman')
                     verifikasi.innerHTML = "Lokasi Valid"
                     history.innerHTML = "Amann!"
@@ -84,7 +84,7 @@
             }
             else {
                 verifikasi.innerHTML = "Anda tidak pada posisi yang tepat"
-                if (locationHistory[locationHistory.length - 1] !== locationHistory[locationHistory.length - 2]) {
+                if (locationHistory[locationHistory.length - 1] !== locationHistory[locationHistory.length - 2] || locationHistory[locationHistory.length - 2] !== locationHistory[locationHistory.length - 3]) {
                     console.log("Amaan, tetapi tidak pada posisi yang tepat :(")
                     history.innerHTML = ('Amann!')
                 } else {
