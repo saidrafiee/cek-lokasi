@@ -17,23 +17,26 @@
     <br>
     <button onclick="verification()">Verifikasi</button>
     <p style="font-family: sans-serif; font-style: italic;">status lokasi:</p>
-    <p id="verifikasi"></p>
+    <p id="verifikasi">-------</p>
+    <p style="font-family: sans-serif; font-style: italic;">history:</p>
+    <p id="history">---------</p>
 
     <script>
         let lokasi = document.getElementById("dataLokasi")
         let verifikasi = document.getElementById("verifikasi")
+        let history = document.getElementById("history")
         let lintang = 0
         let bujur = 0
 
         let locationHistory = []
 
-        // getLocation()
-        // setInterval(() => {
-        //     getLocation()
-        //     locationHistory.push(`${lintang},${bujur}`)
-        //     console.log(locationHistory)
-        //     verification()
-        // }, 5000)
+        getLocation()
+        setInterval(() => {
+            getLocation()
+            locationHistory.push(`${lintang},${bujur}`)
+            console.log(locationHistory)
+            verification()
+        }, 5000)
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -52,7 +55,7 @@
             lokasi.innerHTML = `Latitude: ${lintang} <br> Longitude: ${bujur}`
             // console.log(`${lintang}, ${bujur}`)
             // console.log(bujur)
-            
+
         }
 
         // fungsi untuk verifikasi
@@ -64,17 +67,30 @@
             //     console.log('mereka sama')
             // }
 
-            if (lintang >= 0.5317278 && lintang <= 0.532395 && bujur >= 101.450174 && bujur <= 101.450939) {
+            // LINTANG = 0.5314408,101.450174
+            // LINTANG = 0.5329287,101.450174
+            // BUJUR   = 0.5329287,101.451273
+
+            if (lintang >= 0.5314408 && lintang <= 0.5329287 && bujur >= 101.450174 && bujur <= 101.451273) {
                 if (locationHistory[locationHistory.length - 1] !== locationHistory[locationHistory.length - 2]) {
                     console.log('aman')
                     verifikasi.innerHTML = "Lokasi Valid"
+                    history.innerHTML = "Amann!"
                 } else {
                     console.log('terindikasi Fake GPS')
                     verifikasi.innerHTML = "Terindikasi Fake GPS"
+                    history.innerHTML = "tidak amann!"
                 }
             }
             else {
                 verifikasi.innerHTML = "Anda tidak pada posisi yang tepat"
+                if (locationHistory[locationHistory.length - 1] !== locationHistory[locationHistory.length - 2]) {
+                    console.log("Amaan, tetapi tidak pada posisi yang tepat :(")
+                    history.innerHTML = ('Amann!')
+                } else {
+                    console.log('terindikasi Fake GPS')
+                    history.innerHTML = ('tidak amann!')
+                }
             }
         }
 
